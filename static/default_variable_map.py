@@ -2,7 +2,7 @@ import os, sys
 lib_path = os.path.abspath(os.path.join('..'))
 sys.path.append(lib_path)
 
-from conf import setting
+from freehand.conf import setting
 DATABASE = setting.DATABASES['DBNAME']
 
 # 默认创建的表名列表 需要默认创建的放在这个列表里
@@ -27,31 +27,15 @@ CREATE_DEFAULT_TABLE_SELE_INFO = """
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
     """
 
-# 数据池信息表
-CREATE_DEFAULT_TABLE_DATAPOOL_INFO = """
-    CREATE TABLE `dbfreeh`.`tb_datapool_info` (
-      `id` INT NOT NULL AUTO_INCREMENT,
-      `datapool_name` VARCHAR(45) NULL,
-      `account` VARCHAR(45) NULL,
-      `password` VARCHAR(45) NULL,
-      PRIMARY KEY (`id`))
-    COMMENT = '上传的数据池的信息';
-"""
-
 # 进程控制表
 CREATE_DEFAULT_TABLE_PROCESS_INFO = """
     CREATE TABLE `tb_process_info` (
       `id` int NOT NULL AUTO_INCREMENT,
       `pid` int DEFAULT NULL,
-      `task_detail` varchar(45) DEFAULT NULL,
-      `execute_command` text,
       `task_type` varchar(45) DEFAULT NULL,
-      `site` varchar(45) DEFAULT NULL,
-      `beginTime` time DEFAULT NULL,
-      `endTime` time DEFAULT NULL,
-      `taskExcuteDelta` int DEFAULT NULL,
-      `timeExcuteDelta` int DEFAULT NULL,
-      `note` text,
+      `execute_command` text,
+      `task` varchar(45) DEFAULT NULL,
+      `origin` varchar(45) DEFAULT NULL,
       PRIMARY KEY (`id`)
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='进程控制'
     """
@@ -102,8 +86,8 @@ CREATE_DEFAULT_TABLE_KEYPARAGRAPH = """
     CREATE TABLE `tb_key_paragraph` (
       `id` INT NOT NULL AUTO_INCREMENT,
       `ori_url` longtext COMMENT '段落来源链接',
-      `paragraph` LONGTEXT NULL,
       `keyword` VARCHAR(45) NULL COMMENT '段落原标签',
+      `paragraph` LONGTEXT NULL,
       `publish_time` DATETIME(6) NULL COMMENT '段落发布时间',
       `crawl_time` DATETIME(6) NULL COMMENT '段落爬取下来的时间',
       `site` VARCHAR(45) NULL COMMENT '评论来源站点名',
@@ -179,25 +163,6 @@ CREATE_DEFAULT_TABLE_IMG = """
       PRIMARY KEY (`id`) USING BTREE
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 ROW_FORMAT=DYNAMIC COMMENT='图片信息'
     """
-
-# scrapy项目表
-CREATE_DEFAULT_TABLE_SCRAPYPROJECT = """
-    CREATE TABLE `tb_scrapy_project` (
-      `id` int NOT NULL AUTO_INCREMENT,
-      `project_name` varchar(255) DEFAULT NULL,
-      `site` varchar(45) DEFAULT NULL,
-      `location_project` varchar(255) DEFAULT NULL,
-      `location_items` varchar(255) DEFAULT NULL,
-      `location_middlewares` varchar(255) DEFAULT NULL,
-      `location_pipelines` varchar(255) DEFAULT NULL,
-      `location_settings` varchar(255) DEFAULT NULL,
-      `location_spiders` varchar(255) DEFAULT NULL,
-      `task_detail` varchar(255) DEFAULT NULL,
-      `note` varchar(255) DEFAULT NULL,
-      PRIMARY KEY (`id`)
-    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 
-"""
-
 
 ## 通用sql
 TRUNCATE_TB_SQL = "TRUNCATE `{}`.`{}`;".format(DATABASE,'{}')

@@ -6,14 +6,14 @@ import os, sys
 lib_path = os.path.abspath(os.path.join('../../..'))
 sys.path.append(lib_path)
 
-from utils import globalTools
-from contrib.poster.old_datapool import poster_img
-from middleware.handler.img_handler import classifier as Classifier
-from middleware.handler.img_handler import processing as Processing
-from middleware.filter import image_mid
-from contrib.db.db_notsingleton_connector.db_connector_default import DB_NotSingleton_DEFAULT
-from utils.common import Controler_Time, Controler_Dir
-from contrib.downloader import Downloader
+from freehand.utils import globalTools
+from freehand.contrib.poster.old_datapool import poster_img
+from freehand.middleware.handler.img_handler import classifier as Classifier
+from freehand.middleware.handler.img_handler import processing as Processing
+from freehand.middleware.filter import image_mid
+from freehand.contrib.db.db_notsingleton_connector.db_connector_default import DB_NotSingleton_DEFAULT
+from freehand.utils.common import Controler_Time, Controler_Dir
+from freehand.contrib.downloader import Downloader
 
 def run(proj_absPath, origin, database, tableNameList):
     # 将目录下的图片图片传到接口

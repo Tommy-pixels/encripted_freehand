@@ -1,12 +1,9 @@
-import os, sys
-lib_path = os.path.abspath(os.path.join('../../..'))
-sys.path.append(lib_path)
-
-from utils import globalTools
-from middleware.filter.keyparagraph_mid import Filter_Keyparagraph
-from contrib.poster.old_datapool import poster_paragraph as Poster
-from core.base.tasksmixin.tasks_postdata.base import Base_Task_Post
-from contrib.db.db_singleton_connector.db_connector_shujuchi import DB_Singleton_Shujuchi
+# coding=utf-8
+from freehand.utils import globalTools
+from freehand.middleware.filter.keyparagraph_mid import Filter_Keyparagraph
+from freehand.contrib.poster.old_datapool import poster_paragraph as Poster
+from freehand.core.base.tasksmixin.tasks_postdata.base import Base_Task_Post
+from freehand.contrib.db.db_singleton_connector.db_connector_shujuchi import DB_Singleton_Shujuchi
 
 
 class Task_Post_Keyparagraph(Base_Task_Post):
@@ -14,7 +11,7 @@ class Task_Post_Keyparagraph(Base_Task_Post):
         db = DB_Singleton_Shujuchi()
         dataList = db.default_select_unposted_data(table_name=table_name)
 
-        # 更新状态
+        # 更新状态T
         for i in dataList:
             db.default_update_posted(table_name=table_name, record_id=i[0], posted='2')
 

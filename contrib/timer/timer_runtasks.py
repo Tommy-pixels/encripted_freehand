@@ -40,7 +40,7 @@ class TaskTimer_Spider(Base_Timer):
 class TaskTimer_SpiderBy_Queue(TaskTimer_Spider_By_Queue):
     """固定任务 根据参数执行对应爬虫项目"""
     def __init__(self, timerConfig:dict, env_configs_dict:dict):
-        TaskTimer_Spider_By_Queue.__init__(timerConfig=timerConfig, env_configs_dict=env_configs_dict)
+        TaskTimer_Spider_By_Queue.__init__(self=self, timerConfig=timerConfig, env_configs_dict=env_configs_dict)
 
 
 

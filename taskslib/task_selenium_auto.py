@@ -2,9 +2,9 @@ import os, sys
 lib_path = os.path.abspath(os.path.join('..'))
 sys.path.append(lib_path)
 
-from utils import globalTools
-from utils.common import Controler_Time, Controler_Dir
-from spider import selenium_douyin,selenium_sougou_weixin, selenium_kuaishou, selenium_douyin_stockA
+from freehand.utils import globalTools
+from freehand.utils.common import Controler_Time, Controler_Dir
+from freehand.spider import selenium_douyin,selenium_sougou_weixin, selenium_kuaishou, selenium_douyin_stockA
 
 
 class Sele_Spider_Runner:

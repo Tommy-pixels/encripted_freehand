@@ -2,18 +2,14 @@
     自动化引擎
         内容图 清洗 筛选 并上传
 '''
-import os, sys
-lib_path = os.path.abspath(os.path.join('../../..'))
-sys.path.append(lib_path)
-
-from utils import globalTools
-from contrib.poster.old_datapool import poster_img as Poster
-from middleware.handler.img_handler import classifier as Classifier
-from middleware.handler.img_handler import processing as Processing
-from middleware.filter import image_mid as Filter
-from contrib.db.db_singleton_connector.db_connector_shujuchi import DB_Singleton_DEFAULT
-from utils.common import Controler_Time, Controler_Dir
-from contrib.downloader import Downloader
+from freehand.utils import globalTools
+from freehand.contrib.poster.old_datapool import poster_img as Poster
+from freehand.middleware.handler.img_handler import classifier as Classifier
+from freehand.middleware.handler.img_handler import processing as Processing
+from freehand.middleware.filter import image_mid as Filter
+from freehand.contrib.db.db_singleton_connector.db_connector_shujuchi import DB_Singleton_DEFAULT
+from freehand.utils.common import Controler_Time, Controler_Dir
+from freehand.contrib.downloader import Downloader
 
 def run(proj_absPath, origin, database, tableNameList, maskFilt=False):
     updateTime = Controler_Time.getCurDate("%Y%m%d")
