@@ -1,7 +1,4 @@
-import os, sys
-lib_path = os.path.abspath(os.path.join('../../..'))
-sys.path.append(lib_path)
-
+#coding=utf-8
 from utils import globalTools
 from db.backends.mysql.operations import OperatorMysql
 from contrib.poster.old_datapool import poster_question

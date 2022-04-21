@@ -1,7 +1,4 @@
-import os, sys
-lib_path = os.path.abspath(os.path.join('..'))
-sys.path.append(lib_path)
-
+#coding=utf-8
 import random
 from selenium import webdriver
 from time import sleep

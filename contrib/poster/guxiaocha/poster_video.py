@@ -1,13 +1,10 @@
-import os, sys
-lib_path = os.path.abspath(os.path.join('../../..'))
-sys.path.append(lib_path)
-
+#coding=utf-8
 import os, time, requests, hashlib
 from requests_toolbelt import MultipartEncoder
-from freehand.utils import tools
-from freehand.middleware.filter import video_mid
+from utils import tools
+from middleware.filter import video_mid
 from io import TextIOWrapper, BytesIO
-from freehand.core.base.poster.base import BasePoster
+from core.base.poster.base import BasePoster
 '''
     Post 视频的类
         参数：

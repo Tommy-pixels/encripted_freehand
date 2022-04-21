@@ -1,8 +1,5 @@
-import os, sys
-lib_path = os.path.abspath(os.path.join('../../..'))
-sys.path.append(lib_path)
-
-from freehand.db.backends.mysql.base import BaseDatabase
+#coding=utf-8
+from db.backends.mysql.base import BaseDatabase
 
 class DB_NotSingleton_DEFAULT(BaseDatabase):
     def getAllDataFromDB(self, sql):

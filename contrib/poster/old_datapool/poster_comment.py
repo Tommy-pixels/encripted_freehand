@@ -1,11 +1,9 @@
-import os, sys
-lib_path = os.path.abspath(os.path.join('../../..'))
-sys.path.append(lib_path)
-
-from freehand.core.base.poster.base import BasePoster
+#coding=utf-8
+from core.base.poster.base import BasePoster
 
 class Poster_Comment(BasePoster):
-    def __init__(self, interface):
+    def __init__(self, interface, userName, password):
+        BasePoster.__init__(self, uri=interface, userName=userName,password=password)
         self.interface = interface
 
     def update_postedurldb(self, item):

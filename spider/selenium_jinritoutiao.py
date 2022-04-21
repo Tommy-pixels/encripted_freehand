@@ -1,7 +1,4 @@
-import os, sys
-lib_path = os.path.abspath(os.path.join('..'))
-sys.path.append(lib_path)
-
+#coding=utf-8
 from core.base.selenium.base import BaseSelenium
 from contrib.poster import poster_article
 import time

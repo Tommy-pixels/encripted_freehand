@@ -1,7 +1,4 @@
-import os, sys
-lib_path = os.path.abspath(os.path.join('../..'))
-sys.path.append(lib_path)
-
+#coding=utf-8
 from time import sleep
 from selenium.webdriver.common.action_chains import ActionChains
 from utils.common import Controler_Time

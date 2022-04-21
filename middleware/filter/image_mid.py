@@ -1,12 +1,8 @@
-#-*-coding:utf-8-*-
-import os, sys
-lib_path = os.path.abspath(os.path.join('../..'))
-sys.path.append(lib_path)
-
+#coding=utf-8
 import os, re
 import cv2
 import numpy as np
-from freehand.utils import tools
+from utils import tools
 
 
 '''

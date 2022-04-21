@@ -1,8 +1,5 @@
-import os, sys
-lib_path = os.path.abspath(os.path.join('../..'))
-sys.path.append(lib_path)
-
-from freehand.static.intterrogative_dict import INTERROGATIVE_WORD_DICT
+#coding=utf-8
+from static.intterrogative_dict import INTERROGATIVE_WORD_DICT
 
 class Base_Identifier:
     def __init__(self):

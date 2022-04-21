@@ -1,7 +1,4 @@
-import os, sys
-lib_path = os.path.abspath(os.path.join('../../..'))
-sys.path.append(lib_path)
-
+#coding=utf-8
 from utils import globalTools
 from contrib.db.db_singleton_connector.db_connector_shujuchi import DB_Singleton_DEFAULT
 from middleware.filter.comment_mid import Filter_Comment
@@ -13,10 +10,17 @@ class Task_Post_Comment(Base_Task_Post):
         Base_Task_Post.__init__(self)
         self.keyword_list = ['个股', '股市', 'A股', '港股', '新股', '美股', '创业板', '证券股', '股票', '炒股', '散户', '短线', '操盘', '波段']
 
-    def run(self, table_name):
+    def run(self, table_name, classification):
         # 1 获取 对应数据
         db = DB_Singleton_DEFAULT()
-        dataList = db.default_select_unposted_data(table_name)
+        db.cursor.execute("SELECT id, account,password,api_uri FROM `tb_datapool_info` WHERE `classification`='{}';".format(classification))
+        db_res = db.cursor.fetchone()
+        datapool_id = db_res[0]
+        userName = db_res[1]
+        password = db_res[2]
+        api_uri = db_res[3]
+
+        dataList = db.default_select_unposted_data(table_name, datapool_id=datapool_id)
 
         # 更新状态
         for i in dataList:
@@ -31,11 +35,11 @@ class Task_Post_Comment(Base_Task_Post):
 
         # 5 上传列表
         if (postableList):
-            posterInstance = Poster_Comment(interface='http://121.40.187.51:9088/api/articlecomment_api')
+            posterInstance = Poster_Comment(interface=api_uri+'/articlecomment_api', userName=userName, password=password)
             # posterInstance.post_auto(postableList, task_type='articleComment')
             res = posterInstance.post_auto_2(postableList, task_type='articleComment')
             # 6 更新数据状态
             for i in res['success']:
-                db.default_update_posted(table_name=table_name, record_id=i['id'], posted='1')
+                db.default_update_posted(table_name=table_name, record_id=i['id'], posted='1', datapool_id=datapool_id)
 
     globalTools.finishTask()

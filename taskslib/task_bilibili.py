@@ -1,11 +1,8 @@
+#coding=utf-8
 '''
     自动化引擎
         视频 筛选 并上传
 '''
-import os, sys
-lib_path = os.path.abspath(os.path.join('..'))
-sys.path.append(lib_path)
-
 from utils import globalTools
 from contrib.downloader import Downloader
 from contrib.db.db_singleton_connector.db_connector_shujuchi import DB_Singleton_DEFAULT

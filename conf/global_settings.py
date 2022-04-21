@@ -1,3 +1,4 @@
+#coding=utf-8
 # 浏览器引擎位置 全局通用
 DRIVER_SELENIUM_PATH = r'E:\Projects\webDriver\chrome\chromedriver.exe'
 
@@ -16,8 +17,8 @@ by the FREEHAND_SETTINGS_MODULE environment variable.
 # AUTHENTICATION   #
 ####################
 AUTHENTICATION = {
-    'userName':'qin',
-    'password':'qin123456',
+    'userName':'13999999999',
+    'password':'asdewq123',
     'key': ''
 }
 

@@ -1,10 +1,7 @@
+#coding=utf-8
 """非单例的数据库类"""
-import os, sys
-lib_path = os.path.abspath(os.path.join('../../..'))
-sys.path.append(lib_path)
-
-from freehand.db.backends.mysql.base import BaseDatabase
-from freehand.static.default_variable_map import TRUNCATE_TB_SQL
+from db.backends.mysql.base import BaseDatabase
+from static.default_variable_map import TRUNCATE_TB_SQL
 
 class OperatorMysql(BaseDatabase):
     """

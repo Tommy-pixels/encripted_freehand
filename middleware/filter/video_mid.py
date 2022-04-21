@@ -1,13 +1,10 @@
-import os, sys
-lib_path = os.path.abspath(os.path.join('../..'))
-sys.path.append(lib_path)
-
-from freehand.core.base.middleware.mid_filter.base import BaseFilter
+#coding=utf-8
+from core.base.middleware.mid_filter.base import BaseFilter
 import datetime
 import os
 from moviepy.editor import VideoFileClip
 import cv2
-from freehand.contrib.db.db_notsingleton_connector.db_connector_default import DB_NotSingleton_DEFAULT
+from contrib.db.db_notsingleton_connector.db_connector_default import DB_NotSingleton_DEFAULT
 
 class FileCheck:
     def get_filesize(self, filename):

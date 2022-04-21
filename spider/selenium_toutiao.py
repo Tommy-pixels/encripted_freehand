@@ -1,7 +1,4 @@
-import os, sys
-lib_path = os.path.abspath(os.path.join('..'))
-sys.path.append(lib_path)
-
+#coding=utf-8
 from spider.selenium_jinritoutiao import Crawler_toutiao
 from core.base.selenium.base import ReuseChrome
 from contrib.db.db_notsingleton_connector.db_connector_default import DB_NotSingleton_DEFAULT

@@ -1,3 +1,4 @@
+#coding=utf-8
 '''
     难以归类的工具
 '''
@@ -14,7 +15,7 @@ from selenium.webdriver.common.action_chains import ActionChains
 import random, time
 import requests
 import shutil
-from freehand.utils.common import Controler_Dir
+from utils.common import Controler_Dir
 
 
 '''

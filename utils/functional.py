@@ -1,3 +1,4 @@
+#coding=utf-8
 """
 模仿自django.utils.functional
 """

@@ -1,18 +1,19 @@
+#coding=utf-8
 """
     设置和配置文件加载，模仿版本为3.2.10的 django.conf 读取配置的方式
 """
 import importlib
 import time
 from pathlib import Path
-from . import global_settings
-from freehand.utils.functional import LazyObject, empty
-from freehand.core.exceptions import ImproperlyConfigured
+from .import global_settings
+from utils.functional import LazyObject, empty
+from core.exceptions import ImproperlyConfigured
 
 ###################
 #  这里测试 可删    #
 ###################
 import os
-os.environ.setdefault('FREEWORK_SETTINGS_MODULE', 'freehand.conf.global_settings')
+os.environ.setdefault('FREEWORK_SETTINGS_MODULE', 'conf.global_settings')
 ###################
 #  这里测试  可删   #
 ###################

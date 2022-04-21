@@ -1,10 +1,7 @@
-import os, sys
-lib_path = os.path.abspath(os.path.join('../..'))
-sys.path.append(lib_path)
-
-from freehand.core.base.middleware.mid_filter.base import BaseFilter
-from freehand.middleware.cleaner.paragraph_mid import ParagraphMiddleware
-from freehand.contrib.db.db_singleton_connector.db_connector_shujuchi import DB_Singleton_Shujuchi
+#coding=utf-8
+from core.base.middleware.mid_filter.base import BaseFilter
+from middleware.cleaner.paragraph_mid import ParagraphMiddleware
+from contrib.db.db_singleton_connector.db_connector_shujuchi import DB_Singleton_Shujuchi
 
 class Filter_Keyparagraph(BaseFilter):
     def __init__(self):

@@ -1,11 +1,8 @@
-import os, sys
-lib_path = os.path.abspath(os.path.join('../../..'))
-sys.path.append(lib_path)
-
-from freehand.core.base.tasksmixin.tasks_postdata.base import Base_Task_Post
-from freehand.contrib.db.db_singleton_connector.db_connector_shujuchi import DB_Singleton_DEFAULT
-from freehand.contrib.poster.old_datapool import poster_article
-from freehand.middleware.cleaner.article_mid import ArticleMiddleware
+#coding=utf-8
+from core.base.tasksmixin.tasks_postdata.base import Base_Task_Post
+from contrib.db.db_singleton_connector.db_connector_shujuchi import DB_Singleton_DEFAULT
+from contrib.poster.old_datapool import poster_article
+from middleware.cleaner.article_mid import ArticleMiddleware
 
 """20220402本类修正完毕 可正常使用"""
 
@@ -32,7 +29,7 @@ class Task_Post_Article(Base_Task_Post):
                 res_lis.append((article[0], article[1], title, content, article[4], article[5], article[6], article[7]))
         return res_lis
 
-    def run(self, table_name):
+    def run(self, table_name, classification):
         """
             主要针对 段落、文章、评论 且保存在数据路里的这类数据（字符串类型）的处理和上传， 图片、视频等类型数据不适合本类方法
             注意：
@@ -40,7 +37,15 @@ class Task_Post_Article(Base_Task_Post):
         """
         # 1 获取数据
         db = DB_Singleton_DEFAULT()
-        dataList = db.default_select_unposted_data(table_name=table_name)
+        db.cursor.execute(
+            "SELECT id, account,password,api_uri FROM `tb_datapool_info` WHERE `classification`='{}';".format(
+                classification))
+        db_res = db.cursor.fetchone()
+        datapool_id = db_res[0]
+        userName = db_res[1]
+        password = db_res[2]
+        api_uri = db_res[3]
+        dataList = db.default_select_unposted_data(table_name=table_name, datapool_id=datapool_id)
 
         # 更新状态
         for i in dataList:
@@ -54,11 +59,11 @@ class Task_Post_Article(Base_Task_Post):
 
         # 4 上传 处理后的列表
         if(dataList):
-            posterInstance = poster_article.Poster_Article(interface='http://121.40.187.51:8088/api/article_get')
+            posterInstance = poster_article.Poster_Article(interface=api_uri+'/article_get', userName=userName, password=password)
             res = posterInstance.post_auto_2(dataList, task_type='article')
             # 6 更新数据状态
             for i in res['success']:
-                db.default_update_posted(table_name=table_name, record_id=i['id'], posted='1')
+                db.default_update_posted(table_name=table_name, record_id=i['id'], posted='1', datapool_id=datapool_id)
 
         return dataList
 

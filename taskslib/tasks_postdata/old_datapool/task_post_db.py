@@ -1,7 +1,4 @@
-import os, sys
-lib_path = os.path.abspath(os.path.join('../../..'))
-sys.path.append(lib_path)
-
+#coding=utf-8
 from core.base.tasksmixin.tasks_postdata.base import Base_Task_Post
 from core.base.poster.base import BasePoster
 from contrib.db.db_singleton_connector.db_connector_shujuchi import DB_Singleton_DEFAULT

@@ -1,3 +1,4 @@
+#coding=utf-8
 import os, time, re, requests
 import hashlib, base64
 from selenium import webdriver

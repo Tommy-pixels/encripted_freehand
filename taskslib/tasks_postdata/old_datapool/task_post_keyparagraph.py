@@ -1,17 +1,23 @@
-# coding=utf-8
-from freehand.utils import globalTools
-from freehand.middleware.filter.keyparagraph_mid import Filter_Keyparagraph
-from freehand.contrib.poster.old_datapool import poster_paragraph as Poster
-from freehand.core.base.tasksmixin.tasks_postdata.base import Base_Task_Post
-from freehand.contrib.db.db_singleton_connector.db_connector_shujuchi import DB_Singleton_Shujuchi
+#coding=utf-8
+from utils import globalTools
+from middleware.filter.keyparagraph_mid import Filter_Keyparagraph
+from contrib.poster.old_datapool import poster_paragraph as Poster
+from core.base.tasksmixin.tasks_postdata.base import Base_Task_Post
+from contrib.db.db_singleton_connector.db_connector_shujuchi import DB_Singleton_Shujuchi
 
 
 class Task_Post_Keyparagraph(Base_Task_Post):
-    def run(self, table_name):
+    def run(self, table_name, classification):
         db = DB_Singleton_Shujuchi()
-        dataList = db.default_select_unposted_data(table_name=table_name)
+        db.cursor.execute("SELECT id, account,password,api_uri FROM `tb_datapool_info` WHERE `classification`='{}';".format(classification))
+        db_res = db.cursor.fetchone()
+        datapool_id = db_res[0]
+        userName = db_res[1]
+        password = db_res[2]
+        api_uri = db_res[3]
+        dataList = db.default_select_unposted_data(table_name=table_name, datapool_id = datapool_id)
 
-        # 更新状态T
+        # 更新状态
         for i in dataList:
             db.default_update_posted(table_name=table_name, record_id=i[0], posted='2')
 
@@ -23,11 +29,11 @@ class Task_Post_Keyparagraph(Base_Task_Post):
         print("过滤操作完成， 接下来完成上传操作")
         # 4 上传列表
         if(postableList):
-            posterInstance = Poster.Poster_Paragraph(interface='http://121.40.187.51:8088/api/key_paragraph_api')
+            posterInstance = Poster.Poster_Paragraph(interface=api_uri+'/key_paragraph_api', userName=userName, password=password)
             res = posterInstance.post_auto_2(postableList, task_type='keyParagraph')
             # 6 更新数据状态
             for i in res['success']:
-                db.default_update_posted(table_name=table_name, record_id=i['id'], posted='1')
+                db.default_update_posted(table_name=table_name, record_id=i['id'], posted='1', datapool_id=datapool_id)
 
         print("上传操作完成， 接下来完成 postedurldatabase 数据库的更新操作")
         globalTools.finishTask()

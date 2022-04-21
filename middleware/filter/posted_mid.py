@@ -1,8 +1,5 @@
-import os, sys
-lib_path = os.path.abspath(os.path.join('../..'))
-sys.path.append(lib_path)
-
-from freehand.middleware.cleaner.comment_mid import CommentMiddleware
+#coding=utf-8
+from middleware.cleaner.comment_mid import CommentMiddleware
 '''
     过滤上传过的内容的类  整一个类重写
 '''

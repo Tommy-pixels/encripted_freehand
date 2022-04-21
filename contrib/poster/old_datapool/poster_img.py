@@ -1,9 +1,5 @@
-import os, sys
-
-lib_path = os.path.abspath(os.path.join('../../..'))
-sys.path.append(lib_path)
-
-from freehand.core.base.poster.base import BasePoster_Img
+#coding=utf-8
+from core.base.poster.base import BasePoster_Img
 import os
 
 """使用方法：

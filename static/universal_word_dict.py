@@ -1,4 +1,4 @@
-
+#coding=utf-8
 # 通用词列表
 UNIVERSAL_CLEANWORD_DICT = {
     ########################################

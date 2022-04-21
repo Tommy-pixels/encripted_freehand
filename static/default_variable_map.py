@@ -1,12 +1,10 @@
-import os, sys
-lib_path = os.path.abspath(os.path.join('..'))
-sys.path.append(lib_path)
-
-from freehand.conf import setting
+#coding=utf-8
+from conf import setting
 DATABASE = setting.DATABASES['DBNAME']
 
 # 默认创建的表名列表 需要默认创建的放在这个列表里
-DEFAULT_TABLE_LIS = ['CREATE_DEFAULT_TABLE_SELE_INFO', 'CREATE_DEFAULT_TABLE_PROCESS_INFO', 'CREATE_DEFAULT_TABLE_SITE_INFO','CREATE_DEFAULT_TABLE_STOCKS',
+DEFAULT_TABLE_LIS = ['CREATE_DEFAULT_TABLE_SELE_INFO', 'CREATE_DEFAULT_TABLE_DATAPOOL_INFO', 'CREATE_DEFAULT_TABLE_KEYWORD_FORFILTER', 'CREATE_DEFAULT_TABLE_SCRAPYPROJECT',
+                     'CREATE_DEFAULT_TABLE_PROCESS_INFO', 'CREATE_DEFAULT_TABLE_SITE_INFO','CREATE_DEFAULT_TABLE_STOCKS', 'CREATE_DEFAULT_TABLE_DATAUPLOAD_INFO'
                      'CREATE_DEFAULT_TABLE_COMMENT', 'CREATE_DEFAULT_TABLE_KEYPARAGRAPH', 'CREATE_DEFAULT_TABLE_RELATIVEPARAGRAPH', 'CREATE_DEFAULT_TABLE_ARTICLE',
                      'CREATE_DEFAULT_TABLE_IMG', 'CREATE_DEFAULT_TABLE_VIDEO']
 
@@ -27,15 +25,72 @@ CREATE_DEFAULT_TABLE_SELE_INFO = """
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
     """
 
+# 数据池信息表
+CREATE_DEFAULT_TABLE_DATAPOOL_INFO = """
+    CREATE TABLE `tb_datapool_info` (
+      `id` INT NOT NULL AUTO_INCREMENT,
+      `datapool_name` VARCHAR(45) NULL COMMENT '数据池中文名',
+      `account` VARCHAR(45) NULL,
+      `password` VARCHAR(45) NULL,
+      `classification` VARCHAR(45) NULL COMMENT '数据池英文名，和任务库里的对应目录名相同，调用引用的也是这个',
+      `api_uri` VARCHAR(45) NULL COMMENT '对应接口uri',
+      `note` TEXT NULL,
+      PRIMARY KEY (`id`))
+    COMMENT = '上传的数据池的信息';
+"""
+
+CREATE_DEFAULT_TABLE_DATAUPLOAD_INFO = """
+    CREATE TABLE `dbfreeh`.`tb_dataupload_info` (
+      `id` INT NOT NULL AUTO_INCREMENT,
+      `data_id` INT NULL DEFAULT COMMENT '原数据id',
+      `table_name` VARCHAR(45) NULL DEFAULT COMMENT '原数据对应哪张表的',
+      `datapool_id` INT NULL DEFAULT COMMENT '上传到哪个datapool',
+      PRIMARY KEY (`id`))
+    COMMENT = '已经上传的数据的上传信息';
+"""
+
+CREATE_DEFAULT_TABLE_KEYWORD_FORFILTER = """
+    CREATE TABLE `tb_keyword_forfilter` (
+      `id` int NOT NULL AUTO_INCREMENT,
+      `keyword` varchar(45) DEFAULT NULL,
+      `datapool_id` varchar(45) DEFAULT NULL,
+      PRIMARY KEY (`id`)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COMMENT '根据关键词表的关键词进行筛选'
+"""
+
+
+# scrapy项目表
+CREATE_DEFAULT_TABLE_SCRAPYPROJECT = """
+    CREATE TABLE `tb_scrapy_project` (
+      `id` int NOT NULL AUTO_INCREMENT,
+      `project_name` varchar(255) DEFAULT NULL,
+      `site` varchar(45) DEFAULT NULL,
+      `location_project` varchar(255) DEFAULT NULL,
+      `location_items` varchar(255) DEFAULT NULL,
+      `location_middlewares` varchar(255) DEFAULT NULL,
+      `location_pipelines` varchar(255) DEFAULT NULL,
+      `location_settings` varchar(255) DEFAULT NULL,
+      `location_spiders` varchar(255) DEFAULT NULL,
+      `task_detail` varchar(255) DEFAULT NULL,
+      `note` varchar(255) DEFAULT NULL,
+      PRIMARY KEY (`id`)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 
+"""
+
 # 进程控制表
 CREATE_DEFAULT_TABLE_PROCESS_INFO = """
     CREATE TABLE `tb_process_info` (
       `id` int NOT NULL AUTO_INCREMENT,
       `pid` int DEFAULT NULL,
-      `task_type` varchar(45) DEFAULT NULL,
+      `task_detail` varchar(45) DEFAULT NULL,
       `execute_command` text,
-      `task` varchar(45) DEFAULT NULL,
-      `origin` varchar(45) DEFAULT NULL,
+      `task_type` varchar(45) DEFAULT NULL,
+      `site` varchar(45) DEFAULT NULL,
+      `beginTime` time DEFAULT NULL,
+      `endTime` time DEFAULT NULL,
+      `taskExcuteDelta` int DEFAULT NULL,
+      `timeExcuteDelta` int DEFAULT NULL,
+      `note` text,
       PRIMARY KEY (`id`)
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='进程控制'
     """
@@ -86,8 +141,8 @@ CREATE_DEFAULT_TABLE_KEYPARAGRAPH = """
     CREATE TABLE `tb_key_paragraph` (
       `id` INT NOT NULL AUTO_INCREMENT,
       `ori_url` longtext COMMENT '段落来源链接',
-      `keyword` VARCHAR(45) NULL COMMENT '段落原标签',
       `paragraph` LONGTEXT NULL,
+      `keyword` VARCHAR(45) NULL COMMENT '段落原标签',
       `publish_time` DATETIME(6) NULL COMMENT '段落发布时间',
       `crawl_time` DATETIME(6) NULL COMMENT '段落爬取下来的时间',
       `site` VARCHAR(45) NULL COMMENT '评论来源站点名',
@@ -145,7 +200,7 @@ CREATE_DEFAULT_TABLE_VIDEO = """
       `posted` INT(1) NOT NULL DEFAULT 0 COMMENT '数据是否已经上传 默认 0 ，1 上传过 0 未上传',
       `note` varchar(45) DEFAULT NULL COMMENT '备注说明',
       PRIMARY KEY (`id`)
-    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci ROW_FORMAT=DYNAMIC COMMENT='视频相关信息'
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci ROW_FORMAT=DYNAMIC COMMENT '视频相关信息'
     """
 
 # 图片信息
@@ -161,12 +216,15 @@ CREATE_DEFAULT_TABLE_IMG = """
       `note` varchar(45) DEFAULT NULL COMMENT '备注说明',
       `posted` INT(1) NOT NULL DEFAULT 0 COMMENT '数据是否已经上传 默认 0 ，1 上传过 0 未上传',
       PRIMARY KEY (`id`) USING BTREE
-    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 ROW_FORMAT=DYNAMIC COMMENT='图片信息'
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 ROW_FORMAT=DYNAMIC COMMENT '图片信息'
     """
+
+
 
 ## 通用sql
 TRUNCATE_TB_SQL = "TRUNCATE `{}`.`{}`;".format(DATABASE,'{}')
 UPDATE_POSTED_RECORD = "UPDATE `{}` SET `posted`='{}' WHERE `id`='{}';"
+SQL_INSERT_TBDATUPLOAD_INFO = "INSERT INTO `tb_dataupload_info` (`data_id`, `table_name`, `datapool_id`) VALUES ('{}', '{}', '{}');"
 SELECT_FROM_IF_HAS = "SELECT * FROM `{}` WHERE {};"
 DEFAULT_SQL_PARAM_IFHAS_PARAGRAPH = "`paragraph`='{}'"
 DEFAULT_SQL_PARAM_IFHAS_ARTICLE = "`title`='{}'"

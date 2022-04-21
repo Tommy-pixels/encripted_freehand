@@ -1,8 +1,5 @@
-import os, sys
-lib_path = os.path.abspath(os.path.join('../..'))
-sys.path.append(lib_path)
-
-from freehand.core.manager.base import Manager
+#coding=utf-8
+from core.manager.base import Manager
 import time
 
 """评论任务管理器"""
