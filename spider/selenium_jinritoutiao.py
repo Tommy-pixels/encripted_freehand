@@ -1,8 +1,8 @@
 #coding=utf-8
-from core.base.selenium.base import BaseSelenium
-from contrib.poster import poster_article
+from freehand.core.base.selenium.base import BaseSelenium
+from freehand.contrib.poster import poster_article
 import time
-from middleware.cleaner.paragraph_mid import ParagraphMiddleware
+from freehand.middleware.cleaner.paragraph_mid import ParagraphMiddleware
 
 class Crawler_toutiao(BaseSelenium):
     def click_chaijing(self, browser):

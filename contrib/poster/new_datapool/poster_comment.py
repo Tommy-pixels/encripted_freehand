@@ -1,7 +1,7 @@
 #coding=utf-8
-from core.base.poster.base import BasePoster
-from middleware.filter.comment_mid import CommentMiddleware
-from middleware.filter.comment_mid import Filter_Comment
+from freehand.core.base.poster.base import BasePoster
+from freehand.middleware.filter.comment_mid import CommentMiddleware
+from freehand.middleware.filter.comment_mid import Filter_Comment
 
 
 class Poster_Comment(BasePoster):

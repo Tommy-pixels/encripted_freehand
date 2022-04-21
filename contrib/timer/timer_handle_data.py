@@ -1,5 +1,5 @@
 # coding=utf-8
-from core.timer.base import Base_Timer
+from freehand.core.timer.base import Base_Timer
 from freehand.core.utils.module_loading import import_string
 
 class TaskTimer_AutoDealwithPost(Base_Timer):

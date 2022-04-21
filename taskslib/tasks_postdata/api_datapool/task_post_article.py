@@ -1,8 +1,8 @@
 #coding=utf-8
-from core.base.tasksmixin.tasks_postdata.base import Base_Task_Post
-from contrib.db.db_singleton_connector.db_connector_shujuchi import DB_Singleton_DEFAULT
-from contrib.poster.new_datapool.poster_article import Poster_Article
-from middleware.cleaner.article_mid import ArticleMiddleware
+from freehand.core.base.tasksmixin.tasks_postdata.base import Base_Task_Post
+from freehand.contrib.db.db_singleton_connector.db_connector_shujuchi import DB_Singleton_DEFAULT
+from freehand.contrib.poster.new_datapool.poster_article import Poster_Article
+from freehand.middleware.cleaner.article_mid import ArticleMiddleware
 
 
 """

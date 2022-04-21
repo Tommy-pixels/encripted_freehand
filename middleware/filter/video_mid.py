@@ -1,10 +1,10 @@
 #coding=utf-8
-from core.base.middleware.mid_filter.base import BaseFilter
+from freehand.core.base.middleware.mid_filter.base import BaseFilter
 import datetime
 import os
 from moviepy.editor import VideoFileClip
 import cv2
-from contrib.db.db_notsingleton_connector.db_connector_default import DB_NotSingleton_DEFAULT
+from freehand.contrib.db.db_notsingleton_connector.db_connector_default import DB_NotSingleton_DEFAULT
 
 class FileCheck:
     def get_filesize(self, filename):

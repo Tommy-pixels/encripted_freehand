@@ -1,6 +1,6 @@
 #coding=utf-8
 """连接默认数据库 创建单例连接 调用的基类"""
-from db.backends.mysql.base import BaseDatabase
+from freehand.db.backends.mysql.base import BaseDatabase
 import threading
 
 class DB_Singleton_DEFAULT(BaseDatabase):

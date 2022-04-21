@@ -1,10 +1,10 @@
 #coding=utf-8
 import os, time, requests, hashlib
 from requests_toolbelt import MultipartEncoder
-from utils import tools
-from middleware.filter import video_mid
+from freehand.utils import tools
+from freehand.middleware.filter import video_mid
 from io import TextIOWrapper, BytesIO
-from core.base.poster.base import BasePoster
+from freehand.core.base.poster.base import BasePoster
 '''
     Post 视频的类
         参数：

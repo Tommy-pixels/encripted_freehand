@@ -1,5 +1,5 @@
 #coding=utf-8
-from core.base.selenium.base import BaseSelenium
+from freehand.core.base.selenium.base import BaseSelenium
 from selenium import webdriver
 import string
 import zipfile

@@ -1,7 +1,7 @@
 #coding=utf-8
 from time import sleep
 from selenium.webdriver.common.action_chains import ActionChains
-from utils.common import Controler_Time
+from freehand.utils.common import Controler_Time
 
 class Douyin_SpecialMethod:
     @staticmethod

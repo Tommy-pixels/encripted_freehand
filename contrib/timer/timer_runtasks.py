@@ -1,9 +1,9 @@
 #coding=utf-8
 import os
 import subprocess
-from taskslib import task_selenium_auto
-from core.timer.base import Base_Timer
-from core.timer.base import TaskTimer_Spider_By_Queue
+from freehand.taskslib import task_selenium_auto
+from freehand.core.timer.base import Base_Timer
+from freehand.core.timer.base import TaskTimer_Spider_By_Queue
 
 class TaskTimer_Spider(Base_Timer):
     """定时任务 ———— 爬取数据的的类

@@ -1,5 +1,5 @@
 #coding=utf-8
-from core.base.poster.base import BasePoster_Img
+from freehand.core.base.poster.base import BasePoster_Img
 import os
 
 """使用方法：

@@ -2,7 +2,7 @@
 import time
 from selenium import webdriver
 from time import sleep
-from contrib.db.db_singleton_connector.db_connector_default import DB_Singleton_DEFAULT
+from freehand.contrib.db.db_singleton_connector.db_connector_default import DB_Singleton_DEFAULT
 
 
 class Crawler_Sougou:

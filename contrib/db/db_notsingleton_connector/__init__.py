@@ -1,7 +1,7 @@
 #coding=utf-8
 """非单例的数据库类"""
-from db.backends.mysql.base import BaseDatabase
-from static.default_variable_map import TRUNCATE_TB_SQL
+from freehand.db.backends.mysql.base import BaseDatabase
+from freehand.static.default_variable_map import TRUNCATE_TB_SQL
 
 class OperatorMysql(BaseDatabase):
     """

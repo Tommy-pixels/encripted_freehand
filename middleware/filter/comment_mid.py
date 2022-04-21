@@ -1,6 +1,6 @@
 #coding=utf-8
-from core.base.middleware.mid_filter.base import BaseFilter
-from middleware.cleaner.comment_mid import CommentMiddleware
+from freehand.core.base.middleware.mid_filter.base import BaseFilter
+from freehand.middleware.cleaner.comment_mid import CommentMiddleware
 
 class Filter_Comment(BaseFilter):
     # -> 评论内容的集成操作方法

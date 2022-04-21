@@ -1,5 +1,5 @@
 #coding=utf-8
-from core.manager.base import Manager
+from freehand.core.manager.base import Manager
 import time
 
 """文章任务管理器"""

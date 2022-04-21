@@ -3,12 +3,12 @@ import json
 from selenium import webdriver
 from time import sleep
 import time, requests
-from contrib.poster.old_datapool.poster_video import Poster_Video as VideoPoster
-from middleware.filter.video_mid import KuaishouFilter
-from contrib.db.db_singleton_connector.db_connector_default import DB_Singleton_DEFAULT
+from freehand.contrib.poster.old_datapool.poster_video import Poster_Video as VideoPoster
+from freehand.middleware.filter.video_mid import KuaishouFilter
+from freehand.contrib.db.db_singleton_connector.db_connector_default import DB_Singleton_DEFAULT
 from fake_useragent import UserAgent
-from utils.common import Encode
-from middleware.cleaner import title_mid
+from freehand.utils.common import Encode
+from freehand.middleware.cleaner import title_mid
 
 
 

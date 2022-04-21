@@ -1,5 +1,5 @@
 #coding=utf-8
-from core.base.middleware.mid_string.mid_string_clean import StringMiddleware
+from freehand.core.base.middleware.mid_string.mid_string_clean import StringMiddleware
 
 """
     本title_mid中间件对标题的处理针对的是抖音的标题，暂时还没改进这个mid

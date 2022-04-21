@@ -2,7 +2,7 @@
 import os, re
 import cv2
 import numpy as np
-from utils import tools
+from freehand.utils import tools
 
 
 '''

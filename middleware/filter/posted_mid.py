@@ -1,5 +1,5 @@
 #coding=utf-8
-from middleware.cleaner.comment_mid import CommentMiddleware
+from freehand.middleware.cleaner.comment_mid import CommentMiddleware
 '''
     过滤上传过的内容的类  整一个类重写
 '''

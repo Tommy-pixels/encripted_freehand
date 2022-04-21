@@ -1,10 +1,10 @@
 #coding=utf-8
-from spider.selenium_jinritoutiao import Crawler_toutiao
-from core.base.selenium.base import ReuseChrome
-from contrib.db.db_notsingleton_connector.db_connector_default import DB_NotSingleton_DEFAULT
+from freehand.spider.selenium_jinritoutiao import Crawler_toutiao
+from freehand.core.base.selenium.base import ReuseChrome
+from freehand.contrib.db.db_notsingleton_connector.db_connector_default import DB_NotSingleton_DEFAULT
 import time
-from contrib.poster.old_datapool import poster_article
-from contrib.identifier.base import Base_Identifier
+from freehand.contrib.poster.old_datapool import poster_article
+from freehand.contrib.identifier.base import Base_Identifier
 
 def run():
     dbOperator = DB_NotSingleton_DEFAULT()

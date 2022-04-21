@@ -15,7 +15,7 @@ from selenium.webdriver.common.action_chains import ActionChains
 import random, time
 import requests
 import shutil
-from utils.common import Controler_Dir
+from freehand.utils.common import Controler_Dir
 
 
 '''

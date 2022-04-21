@@ -3,11 +3,11 @@
     自动化引擎
         视频 筛选 并上传
 '''
-from utils import globalTools
-from contrib.downloader import Downloader
-from contrib.db.db_singleton_connector.db_connector_shujuchi import DB_Singleton_DEFAULT
-from contrib.poster.old_datapool.poster_video import Poster_Video
-from middleware.filter.video_mid import BilibiliFilter
+from freehand.utils import globalTools
+from freehand.contrib.downloader import Downloader
+from freehand.contrib.db.db_singleton_connector.db_connector_shujuchi import DB_Singleton_DEFAULT
+from freehand.contrib.poster.old_datapool.poster_video import Poster_Video
+from freehand.middleware.filter.video_mid import BilibiliFilter
 from fake_useragent import UserAgent
 
 def check_hasvideoindb0(checkDate_time, titlePostedList_,item):

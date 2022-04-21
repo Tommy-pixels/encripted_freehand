@@ -1,5 +1,5 @@
 #coding=utf-8
-from core.base.middleware.mid_string.mid_string_clean import StringMiddleware
+from freehand.core.base.middleware.mid_string.mid_string_clean import StringMiddleware
 
 class CommentMiddleware(StringMiddleware):
     @classmethod

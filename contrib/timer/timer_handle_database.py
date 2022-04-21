@@ -1,6 +1,6 @@
 #coding=utf-8
-from contrib.db.db_singleton_connector.db_connector_default import DB_Singleton_DEFAULT
-from core.timer.base import Base_Timer
+from freehand.contrib.db.db_singleton_connector.db_connector_default import DB_Singleton_DEFAULT
+from freehand.core.timer.base import Base_Timer
 
 """数据库处理相关的定时器 
 该定时器没用用到，可取消了"""

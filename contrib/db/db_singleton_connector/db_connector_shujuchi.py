@@ -1,6 +1,6 @@
 #coding=utf-8
 from .db_connector_default import DB_Singleton_DEFAULT
-from static import default_variable_map
+from freehand.static import default_variable_map
 
 class DB_Singleton_Shujuchi(DB_Singleton_DEFAULT):
     def insert_key_paragraph(self, ori_uri, tag_origin, paragraph, publish_time, crawl_time, site, classfication):

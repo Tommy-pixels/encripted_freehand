@@ -1,7 +1,7 @@
 #coding=utf-8
-from core.base.tasksmixin.tasks_postdata.base import Base_Task_Post
-from core.base.poster.base import BasePoster
-from contrib.db.db_singleton_connector.db_connector_shujuchi import DB_Singleton_DEFAULT
+from freehand.core.base.tasksmixin.tasks_postdata.base import Base_Task_Post
+from freehand.core.base.poster.base import BasePoster
+from freehand.contrib.db.db_singleton_connector.db_connector_shujuchi import DB_Singleton_DEFAULT
 
 
 """上传指定数据库 指定表里的数据到指定接口"""

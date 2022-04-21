@@ -5,7 +5,7 @@ from time import sleep
 import pymysql, time, requests
 from selenium.webdriver.common.keys import Keys
 from fake_useragent import UserAgent
-from utils.common import Encode
+from freehand.utils.common import Encode
 
 class Crawler_Zhihu_Base:
     def __init__(self, url="https://www.zhihu.com/search?q=%E9%85%8D%E8%B5%84&type=content"):

@@ -1,6 +1,6 @@
 #coding=utf-8
-from core.base.middleware.mid_filter.base import BaseFilter
-from middleware.cleaner.paragraph_mid import ParagraphMiddleware
+from freehand.core.base.middleware.mid_filter.base import BaseFilter
+from freehand.middleware.cleaner.paragraph_mid import ParagraphMiddleware
 
 class Filter_Relativeparagraph(BaseFilter):
     # -> 关联段落的集成操作方法

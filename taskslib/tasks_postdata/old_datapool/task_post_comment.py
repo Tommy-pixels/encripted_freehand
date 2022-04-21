@@ -1,9 +1,9 @@
 #coding=utf-8
-from utils import globalTools
-from contrib.db.db_singleton_connector.db_connector_shujuchi import DB_Singleton_DEFAULT
-from middleware.filter.comment_mid import Filter_Comment
-from contrib.poster.old_datapool import poster_comment as Poster
-from core.base.tasksmixin.tasks_postdata.base import Base_Task_Post
+from freehand.utils import globalTools
+from freehand.contrib.db.db_singleton_connector.db_connector_shujuchi import DB_Singleton_DEFAULT
+from freehand.middleware.filter.comment_mid import Filter_Comment
+from freehand.contrib.poster.old_datapool import poster_comment as Poster
+from freehand.core.base.tasksmixin.tasks_postdata.base import Base_Task_Post
 
 """20220402本类修正完毕 可正常使用"""
 

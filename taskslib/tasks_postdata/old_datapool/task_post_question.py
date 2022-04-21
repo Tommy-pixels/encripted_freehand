@@ -1,7 +1,7 @@
 #coding=utf-8
-from utils import globalTools
-from db.backends.mysql.operations import OperatorMysql
-from contrib.poster.old_datapool import poster_question
+from freehand.utils import globalTools
+from freehand.db.backends.mysql.operations import OperatorMysql
+from freehand.contrib.poster.old_datapool import poster_question
 
 def run():
     param = {

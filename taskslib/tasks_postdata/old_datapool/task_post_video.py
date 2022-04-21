@@ -1,5 +1,5 @@
 #coding=utf-8
-from utils import globalTools
+from freehand.utils import globalTools
 
 def run(setting):
     """

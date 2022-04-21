@@ -1,2 +1,2 @@
 #coding=utf-8
-from core.base.selenium.base import *
+from freehand.core.base.selenium.base import *

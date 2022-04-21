@@ -1,5 +1,5 @@
 #coding=utf-8
-from core.base.poster.base import BasePoster
+from freehand.core.base.poster.base import BasePoster
 
 class Poster_Comment(BasePoster):
     def __init__(self, interface, userName, password):

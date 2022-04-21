@@ -5,14 +5,14 @@ from time import sleep
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from contrib.poster.old_datapool.poster_video import Poster_Video as VideoPoster
-from middleware.filter.video_mid import DouyinFilter
-from utils import tools
-from core.base.cracker import cracker_douyin
-from contrib.downloader import Downloader
-from core.base.selenium.base import BaseSelenium
+from freehand.contrib.poster.old_datapool.poster_video import Poster_Video as VideoPoster
+from freehand.middleware.filter.video_mid import DouyinFilter
+from freehand.utils import tools
+from freehand.core.base.cracker import cracker_douyin
+from freehand.contrib.downloader import Downloader
+from freehand.core.base.selenium.base import BaseSelenium
 from .universal.special_methods_douyin import Douyin_SpecialMethod
-from middleware.cleaner.title_mid import TitleMiddleware
+from freehand.middleware.cleaner.title_mid import TitleMiddleware
 
 
 # --------------------------- 爬取抖音视频的类 ----------------------------------

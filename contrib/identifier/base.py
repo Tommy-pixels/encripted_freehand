@@ -1,5 +1,5 @@
 #coding=utf-8
-from static.intterrogative_dict import INTERROGATIVE_WORD_DICT
+from freehand.static.intterrogative_dict import INTERROGATIVE_WORD_DICT
 
 class Base_Identifier:
     def __init__(self):

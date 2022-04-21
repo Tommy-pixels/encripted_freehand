@@ -1,5 +1,5 @@
 #coding=utf-8
-from db.backends.mysql.base import BaseDatabase
+from freehand.db.backends.mysql.base import BaseDatabase
 
 class DB_NotSingleton_DEFAULT(BaseDatabase):
     def getAllDataFromDB(self, sql):

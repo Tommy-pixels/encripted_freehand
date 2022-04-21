@@ -1,8 +1,8 @@
 #coding=utf-8
-from core.base.selenium.base import BaseSelenium
-from contrib.db.db_singleton_connector.db_connector_shujuchi import DB_Singleton_Shujuchi
-from core.timer import base
-from core.base.selenium.base import ReuseChrome
+from freehand.core.base.selenium.base import BaseSelenium
+from freehand.contrib.db.db_singleton_connector.db_connector_shujuchi import DB_Singleton_Shujuchi
+from freehand.core.timer import base
+from freehand.core.base.selenium.base import ReuseChrome
 import time
 
 def start_chrome(chromeDriverPath):

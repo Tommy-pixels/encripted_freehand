@@ -1,8 +1,8 @@
 #coding=utf-8
-from core.base.tasksmixin.tasks_postdata.base import Base_Task_Post
-from contrib.db.db_singleton_connector.db_connector_shujuchi import DB_Singleton_DEFAULT
-from contrib.poster.old_datapool import poster_article
-from middleware.cleaner.article_mid import ArticleMiddleware
+from freehand.core.base.tasksmixin.tasks_postdata.base import Base_Task_Post
+from freehand.contrib.db.db_singleton_connector.db_connector_shujuchi import DB_Singleton_DEFAULT
+from freehand.contrib.poster.old_datapool import poster_article
+from freehand.middleware.cleaner.article_mid import ArticleMiddleware
 
 """20220402本类修正完毕 可正常使用"""
 

@@ -1,5 +1,5 @@
 #coding=utf-8
-from conf import setting
+from freehand.conf import setting
 DATABASE = setting.DATABASES['DBNAME']
 
 # 默认创建的表名列表 需要默认创建的放在这个列表里

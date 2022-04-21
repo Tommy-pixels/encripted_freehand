@@ -1,9 +1,9 @@
 #coding=utf-8
-from utils import globalTools
-from contrib.db.db_singleton_connector.db_connector_shujuchi import DB_Singleton_DEFAULT
-from middleware.filter.comment_mid import Filter_Comment
-from contrib.poster.new_datapool.poster_comment import Poster_Comment
-from core.base.tasksmixin.tasks_postdata.base import Base_Task_Post
+from freehand.utils import globalTools
+from freehand.contrib.db.db_singleton_connector.db_connector_shujuchi import DB_Singleton_DEFAULT
+from freehand.middleware.filter.comment_mid import Filter_Comment
+from freehand.contrib.poster.new_datapool.poster_comment import Poster_Comment
+from freehand.core.base.tasksmixin.tasks_postdata.base import Base_Task_Post
 
 class Task_Post_Comment(Base_Task_Post):
     def __init__(self):

@@ -1,5 +1,5 @@
 #coding=utf-8
-from core.base.cracker.base_slidercrack import Base_Slidercrack
+from freehand.core.base.cracker.base_slidercrack import Base_Slidercrack
 import time
 
 class Slidercheck_Douyin(Base_Slidercrack):
