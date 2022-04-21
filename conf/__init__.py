@@ -6,14 +6,14 @@ import importlib
 import time
 from pathlib import Path
 from .import global_settings
-from utils.functional import LazyObject, empty
-from core.exceptions import ImproperlyConfigured
+from freehand.utils.functional import LazyObject, empty
+from freehand.core.exceptions import ImproperlyConfigured
 
 ###################
 #  这里测试 可删    #
 ###################
 import os
-os.environ.setdefault('FREEWORK_SETTINGS_MODULE', 'conf.global_settings')
+os.environ.setdefault('FREEWORK_SETTINGS_MODULE', 'freehand.conf.global_settings')
 ###################
 #  这里测试  可删   #
 ###################

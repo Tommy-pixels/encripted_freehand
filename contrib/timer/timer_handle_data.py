@@ -5,7 +5,7 @@ from freehand.core.utils.module_loading import import_string
 class TaskTimer_AutoDealwithPost(Base_Timer):
     def task(self):
         datapool = self.timerConfig["datapool"]
-        dotted_path = 'taskslib.tasks_postdata.' + datapool
+        dotted_path = 'freehand.taskslib.tasks_postdata.' + datapool
         if (self.timerConfig["task_type"] == 'keyParagraph'):
             key_p = import_string(dotted_path + '.task_post_keyparagraph')
             t = key_p.Task_Post_Keyparagraph()
