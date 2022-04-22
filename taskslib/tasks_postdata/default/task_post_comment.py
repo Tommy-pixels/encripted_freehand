@@ -8,7 +8,7 @@ from core.base.tasksmixin.tasks_postdata.base import Base_Task_Post
 class Task_Post_Comment(Base_Task_Post):
     def __init__(self):
         Base_Task_Post.__init__(self)
-        self.keyword_list = ['个股', '股市', 'A股', '港股', '新股', '美股', '创业板', '证券股', '股票', '炒股', '散户', '短线', '操盘', '波段']
+        self.keyword_list = ['个股', '股市', 'A股', '港股', '新股', '美股', '创业板', '证券股', '炒股', '散户', '短线', '操盘', '波段', '股票','個股', '創業板', '證券股', '散戶', '短線', '操盤']
 
     def run(self, table_name, classification):
         # 1 获取 对应数据
