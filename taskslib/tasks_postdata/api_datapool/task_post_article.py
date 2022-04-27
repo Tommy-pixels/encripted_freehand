@@ -36,7 +36,13 @@ class Task_Post_Article(Base_Task_Post):
         """
         # 1 获取数据
         db = DB_Singleton_DEFAULT()
-        dataList = db.default_select_unposted_data(table_name=table_name)
+        db.cursor.execute("SELECT id, account,password,api_uri FROM `tb_datapool_info` WHERE `classification`='{}';".format(classification))
+        db_res = db.cursor.fetchone()
+        datapool_id = db_res[0]
+        userName = db_res[1]
+        password = db_res[2]
+        api_uri = db_res[3]
+        dataList = db.default_select_unposted_data(table_name=table_name, datapool_id=datapool_id, by_classification=True)
 
         # 更新状态
         for i in dataList:
@@ -50,14 +56,7 @@ class Task_Post_Article(Base_Task_Post):
 
         # 4 上传 处理后的列表
         if (dataList):
-            db.cursor.execute(
-                "SELECT id, account,password,api_uri FROM `tb_datapool_info` WHERE `classification`='{}';".format(
-                    classification))
-            db_res = db.cursor.fetchone()
-            datapool_id = db_res[0]
-            userName = db_res[1]
-            password = db_res[2]
-            api_uri = db_res[3]
+
             posterInstance = Poster_Article(interface=api_uri+'/article_get', userName=userName, password=password)
             res = posterInstance.post_auto_2(dataList, task_type='article')
             # 6 更新数据状态

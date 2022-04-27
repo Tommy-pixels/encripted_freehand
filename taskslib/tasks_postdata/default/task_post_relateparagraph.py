@@ -3,11 +3,11 @@
     自动化引擎
         从相关段落数据库中获取数据 进行 清洗 筛选 并上传 （已完成）
 '''
-from utils import globalTools
-from middleware.filter.relativeparagraph_mid import Filter_Relativeparagraph
-from contrib.poster.old_datapool import poster_paragraph as Poster
-from core.base.tasksmixin.tasks_postdata.base import Base_Task_Post
-from contrib.db.db_singleton_connector.db_connector_shujuchi import DB_Singleton_DEFAULT
+from freehand.utils import globalTools
+from freehand.middleware.filter.relativeparagraph_mid import Filter_Relativeparagraph
+from freehand.contrib.poster.old_datapool import poster_paragraph as Poster
+from freehand.core.base.tasksmixin.tasks_postdata.base import Base_Task_Post
+from freehand.contrib.db.db_singleton_connector.db_connector_shujuchi import DB_Singleton_DEFAULT
 
 
 class Task_Post_Relativeparagraph(Base_Task_Post):

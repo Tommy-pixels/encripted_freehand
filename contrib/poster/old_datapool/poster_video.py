@@ -14,12 +14,13 @@ from freehand.middleware.handler.img_handler import classifier
 '''
 class Poster_Video(BasePoster):
     # 传入的dirPath必须是这样的格式： XX:\\XX\\ 最后是有 \\ 的
-    def __init__(self, videoDirPath, coverSavedPath, interface='http://121.40.187.51:8088/api/videos_api'):
+    def __init__(self, videoDirPath, coverSavedPath, interface='', userName='', password=''):
+        BasePoster.__init__(self, uri=interface, userName=userName, password=password)
         self.videoDirPath = videoDirPath
         self.get_videoPathList()
         self.interface = interface
-        self.userName = 'qin'
-        self.password = 'qin123456'
+        self.userName = userName
+        self.password = password
         self.curDate = str(tools.getCurDate())
         self.key = hashlib.md5(('datapool' + self.userName + self.password + self.curDate).encode('utf-8')).hexdigest()
         self.coverSavedPath = coverSavedPath

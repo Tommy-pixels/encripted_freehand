@@ -2,10 +2,6 @@
 '''
     难以归类的工具
 '''
-import os, sys
-lib_path = os.path.abspath(os.path.join('..'))
-sys.path.append(lib_path)
-
 import re, os
 import datetime
 

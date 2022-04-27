@@ -46,7 +46,7 @@ class Douyin_SpecialMethod:
         :params cracker 破解对象
         :params browser_lis 浏览器对象列表
         '''
-        sleep(5)
+        sleep(3)
         for browser in browser_lis:
             try:
                 self.EffectiveCookies0 = cracker.handle_SlideCheck(browser)
@@ -70,6 +70,12 @@ class Douyin_SpecialMethod:
         # 释放滑块
         action.release().perform()
         pass
+
+    def check_is_curday(self, pubTime):
+        if (self.check_publishtime_istoday(pubTime)):
+            return True
+        else:
+            return False
 
     def check_conditions_video(self, pubTime, timelength, title):
         if(self.check_publishtime_istoday(pubTime)):

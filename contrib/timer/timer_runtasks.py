@@ -1,7 +1,6 @@
 #coding=utf-8
 import os
 import subprocess
-from freehand.taskslib import task_selenium_auto
 from freehand.core.timer.base import Base_Timer
 from freehand.core.timer.base import TaskTimer_Spider_By_Queue
 
@@ -22,14 +21,31 @@ class TaskTimer_Spider(Base_Timer):
             subprocess.Popen(self.timerConfig['command'])
         elif(self.timerConfig['crawler_method']=='selenium'):
             if(self.timerConfig['origin'] == 'douyin'):
-                task_selenium_auto.Sele_Spider_Runner.run_douyin(proj_absPath=self.timerConfig['proj_absPath'],crawlUrl_list=self.timerConfig['crawlUrl_list'],
-                                                                 origin='douyin')
-            elif(self.timerConfig['origin'] == 'kuaishou'):
+                from taskslib.tasks_sync.old_datapool.task_video_douyin import run_douyin
+                run_douyin(proj_absPath=self.timerConfig['proj_absPath'], crawlUrl_list=self.timerConfig['crawlUrl_list'], origin='douyin')
+            elif(self.timerConfig['origin'] == 'douyin_guxiaocha_hotword'):
+                from taskslib.tasks_sync.guxiaocha_datapool import task_video_douyin_hotword
+                task_video_douyin_hotword.run_douyin_guxiaocha(proj_absPath=self.timerConfig['proj_absPath'], crawlUrl_list=self.timerConfig['crawlUrl_list'], origin='douyin')
+            elif (self.timerConfig['origin'] == 'douyin_guxiaocha_a500'):
+                from taskslib.tasks_sync.guxiaocha_datapool import task_video_douyin_a500
+                task_video_douyin_a500.run_douyin_guxiaocha(
+                    proj_absPath=self.timerConfig['proj_absPath'],
+                    crawlUrl_list=self.timerConfig['crawlUrl_list'],
+                    origin='douyin'
+                )
+            elif (self.timerConfig['origin'] == 'douyin_guxiaocha_a'):
+                from taskslib.tasks_sync.guxiaocha_datapool import task_video_douyin_a
+                task_video_douyin_a.run_douyin_guxiaocha(
+                    proj_absPath=self.timerConfig['proj_absPath'],
+                    crawlUrl_list=self.timerConfig['crawlUrl_list'],
+                    origin='douyin'
+                )
+            elif (self.timerConfig['origin'] == 'kuaishou'):
+                from taskslib import task_selenium_auto
                 task_selenium_auto.Sele_Spider_Runner.run_kuaishou()
-            elif(self.timerConfig['origin'] == 'sougou'):
+            elif (self.timerConfig['origin'] == 'sougou'):
+                from taskslib import task_selenium_auto
                 task_selenium_auto.Sele_Spider_Runner.run_sougou()
-            elif(self.timerConfig['origin'] == 'douyin_guxiaocha'):
-                task_selenium_auto.Sele_Spider_Runner.run_douyin_guxiaocah(proj_absPath=self.timerConfig['proj_absPath'], crawlUrl_list=self.timerConfig['crawlUrl_list'], origin='douyin')
         else:
             print('crawler_method参数出错')
 

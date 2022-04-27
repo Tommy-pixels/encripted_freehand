@@ -137,6 +137,23 @@ class Filter_Video(BaseFilter):
                 continue
         return filteredNameList
 
+    # 过滤掉上传过的视频
+    def filter_posted(self, urlList):
+        # 从数据库获取上传过的数据
+        postedList = self.dbOperator.getAllDataFromDB("SELECT title FROM `tb_video`;")
+        tempList = []
+        if (postedList):
+            for postedItem in postedList:
+                for item in urlList:
+                    if (item[0] == postedItem[0]):
+                        tempList.append(item)
+                    else:
+                        continue
+        if (tempList):
+            # 待上传的列表中有已上传过的数据，清除上传过的数据
+            for item in tempList:
+                urlList.remove(item)
+        return urlList
 
 
     # 过滤标题关键词
@@ -170,6 +187,32 @@ class DouyinFilter(Filter_Video):
             '#搞笑', '#动漫', '#物价'
         ]
         self.filterwordList.extend(douyinFilterWordList)
+
+    def filter_by_regulation(self, title):
+        if('#财经' not in title or '股票' not in title):
+            return False
+        else:
+            return True
+
+    def filter_by_hotnum(self, lis):
+        res = []
+        # 针对guxiaocha平台新增的筛选条件
+        for li in lis:
+            if ('w' not in li[4]):
+                continue
+            else:
+                res.append(li)
+        return res
+
+    def filter_by_title(self, lis):
+        res = []
+        # 针对普通数据池筛选条件
+        for li in lis:
+            if(not self.filter_by_regulation(li[0])):
+                continue
+            else:
+                res.append(li)
+        return res
 
 class BilibiliFilter(Filter_Video):
     def __init__(self, dirOriPath):
