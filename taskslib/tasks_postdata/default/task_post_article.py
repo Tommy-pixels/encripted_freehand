@@ -25,7 +25,7 @@ class Task_Post_Article(Base_Task_Post):
             else:
                 continue
             if (title and content and len(title) >= 10 and len(content) > 550):
-                res_lis.append((article[0], article[1], title, content, article[4], article[5], article[6], article[7]))
+                res_lis.append((article[0], article[1], title, content, article[4], article[5], article[6], article[7], article[8]))
         return res_lis
 
     def run(self, table_name, classification):

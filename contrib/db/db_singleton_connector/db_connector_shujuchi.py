@@ -46,6 +46,6 @@ class DB_Singleton_Shujuchi(DB_Singleton_DEFAULT):
         return res
 
     def select_all_data(self, table_name):
-        d_lis = self.getAllDataFromDB('SELECT * FROM `{}`;'.format(table_name))
+        d_lis = self.getAllDataFromDB('SELECT name, code FROM `{}`;'.format(table_name))
         return d_lis
 
