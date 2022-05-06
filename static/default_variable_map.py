@@ -4,7 +4,7 @@ DATABASE = setting.DATABASES['DBNAME']
 
 # 默认创建的表名列表 需要默认创建的放在这个列表里
 DEFAULT_TABLE_LIS = ['CREATE_DEFAULT_TABLE_SELE_INFO', 'CREATE_DEFAULT_TABLE_DATAPOOL_INFO', 'CREATE_DEFAULT_TABLE_KEYWORD_FORFILTER', 'CREATE_DEFAULT_TABLE_SCRAPYPROJECT',
-                     'CREATE_DEFAULT_TABLE_PROCESS_INFO', 'CREATE_DEFAULT_TABLE_SITE_INFO','CREATE_DEFAULT_TABLE_STOCKS', 'CREATE_DEFAULT_TABLE_DATAUPLOAD_INFO'
+                     'CREATE_DEFAULT_TABLE_PROCESS_INFO', 'CREATE_DEFAULT_TABLE_SITE_INFO','CREATE_DEFAULT_TABLE_STOCKS', 'CREATE_DEFAULT_TABLE_DATAUPLOAD_INFO', 'CREATE_DEFAULT_TABLE_DATAUPLOAD_INFO',
                      'CREATE_DEFAULT_TABLE_COMMENT', 'CREATE_DEFAULT_TABLE_KEYPARAGRAPH', 'CREATE_DEFAULT_TABLE_RELATIVEPARAGRAPH', 'CREATE_DEFAULT_TABLE_ARTICLE',
                      'CREATE_DEFAULT_TABLE_IMG', 'CREATE_DEFAULT_TABLE_VIDEO']
 
@@ -40,7 +40,7 @@ CREATE_DEFAULT_TABLE_DATAPOOL_INFO = """
 """
 
 CREATE_DEFAULT_TABLE_DATAUPLOAD_INFO = """
-    CREATE TABLE `dbfreeh`.`tb_dataupload_info` (
+    CREATE TABLE `tb_dataupload_info` (
       `id` INT NOT NULL AUTO_INCREMENT,
       `data_id` INT NULL DEFAULT COMMENT '原数据id',
       `table_name` VARCHAR(45) NULL DEFAULT COMMENT '原数据对应哪张表的',
@@ -49,6 +49,14 @@ CREATE_DEFAULT_TABLE_DATAUPLOAD_INFO = """
     COMMENT = '已经上传的数据的上传信息';
 """
 
+CREATE_DEFAULT_TABLE_IMG_DOWNLOAD_INFO = """
+    CREATE TABLE `tb_download_img` (
+      `id` int NOT NULL AUTO_INCREMENT,
+      `img_url` longtext,
+      `filename` varchar(45) DEFAULT NULL,
+      PRIMARY KEY (`id`)
+    )
+"""
 CREATE_DEFAULT_TABLE_KEYWORD_FORFILTER = """
     CREATE TABLE `tb_keyword_forfilter` (
       `id` int NOT NULL AUTO_INCREMENT,
@@ -71,7 +79,9 @@ CREATE_DEFAULT_TABLE_SCRAPYPROJECT = """
       `location_pipelines` varchar(255) DEFAULT NULL,
       `location_settings` varchar(255) DEFAULT NULL,
       `location_spiders` varchar(255) DEFAULT NULL,
+      `spider_file_name` varchar(255) DEFAULT NULL,
       `task_detail` varchar(255) DEFAULT NULL,
+      `datapool_id` int DEFAULT NULL,
       `note` varchar(255) DEFAULT NULL,
       PRIMARY KEY (`id`)
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 
@@ -90,6 +100,7 @@ CREATE_DEFAULT_TABLE_PROCESS_INFO = """
       `endTime` time DEFAULT NULL,
       `taskExcuteDelta` int DEFAULT NULL,
       `timeExcuteDelta` int DEFAULT NULL,
+      `datapool_id` int DEFAULT NULL,
       `note` text,
       PRIMARY KEY (`id`)
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='进程控制'
@@ -175,6 +186,7 @@ CREATE_DEFAULT_TABLE_ARTICLE = """
       `ori_url` longtext COMMENT '文章对应链接',
       `title` varchar(255),
       `content` longtext,
+      `thumbnail` text,
       `publish_time` DATETIME(6) NULL COMMENT '文章发布时间',
       `crawl_time` DATETIME(6) NULL COMMENT '文章爬取下来的时间',
       `site` VARCHAR(255) COMMENT '文章来源站点',
@@ -276,11 +288,11 @@ SQL_INSERT_IMG = "INSERT INTO `tb_img` (`img_type`, `ori_uri`, `reco`, `crawl_ti
 SQL_INSERT_VIDEO = "INSERT INTO `tb_video` (`ori_uri`, `title`, `publish_time`, `crawl_time`, `local_path`, `site`, `duration`, `classification`, `posted`) VALUES ('{}', '{}', '{}', '{}', '{}', '{}', '{}', '{}', '{}');"
 
 SQL_SELECT_UNPOSTED = "SELECT {} FROM `{}` WHERE {};"
-DEFAULT_SQL_PARAM_UNPOSTED_FILTER_CONDITION = '`posted`={}{}'
+DEFAULT_SQL_PARAM_UNPOSTED_FILTER_CONDITION = '(`posted`={}){}'
 DEFAULT_SQL_PARAM_UNPOSTED_KEYPARAGRAPH = '`id`, `ori_url`,  `paragraph`, `keyword`,`publish_time`, `crawl_time`, `site`, `classification`'
 DEFAULT_SQL_PARAM_UNPOSTED_RELATIVEPARAGRAPH = '`id`, `ori_url`, `paragraph`, `keyword`, `publish_time`, `crawl_time`, `site`, `classification`'
 DEFAULT_SQL_PARAM_UNPOSTED_COMMENT = '`id`, `ori_url`, `comment`, `keyword`, `publish_time`, `crawl_time`, `site`, `classification`'
-DEFAULT_SQL_PARAM_UNPOSTED_ARTICLE = '`id`, `ori_url`, `title`, `content`, `publish_time`, `crawl_time`, `site`, `classification`'
+DEFAULT_SQL_PARAM_UNPOSTED_ARTICLE = '`id`, `ori_url`, `title`, `content`, `publish_time`, `crawl_time`, `site`, `classification`, `thumbnail`'
 DEFAULT_SQL_PARAM_UNPOSTED_IMG = '`id`, `ori_url`, `reco`, `crawl_time`, `local_path`, `site`, `classification`'
 DEFAULT_SQL_PARAM_UNPOSTED_VIDEO = '`id`, `ori_url`, `title`, `publish_time`, `crawl_time`, `local_path`, `site`, `duration`, `classification`'
 
