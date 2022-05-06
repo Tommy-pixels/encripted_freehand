@@ -17,8 +17,8 @@ by the FREEHAND_SETTINGS_MODULE environment variable.
 # AUTHENTICATION   #
 ####################
 AUTHENTICATION = {
-    'userName':'13999999999',
-    'password':'asdewq123',
+    'userName':'',
+    'password':'',
     'key': ''
 }
 
