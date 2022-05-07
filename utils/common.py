@@ -289,3 +289,41 @@ class Handle_PackageInfo:
         return self.headers
 
 
+
+class DB_Common:
+    @staticmethod
+    def check_exist_record(cursor, redis_db, **kwargs):
+        """验证数据是否重复 redis 和 mysql
+        :param cursor pymysql库类对象的cursor方法
+        :param redis_db redis库类对象
+        """
+        for item, val in kwargs.items():
+            if(item=='comment'):
+                res = redis_db.hexists('tb_comment:comment:' + val, 'comment')
+                if (not res):
+                    # 判断是否存在
+                    sql_repeated = "SELECT id,comment FROM `tb_comment` WHERE `comment`=\'{}\';".format(val)
+                    cursor.execute(sql_repeated)
+                    res = cursor.fetchone()
+            elif(item=='keyparagraph'):
+                res = redis_db.hexists('tb_key_paragraph:paragraph:' + val, 'paragraph')
+                if (not res):
+                    # 判断是否存在
+                    sql_repeated = "SELECT id,paragraph FROM `tb_key_paragraph` WHERE `paragraph`=\'{}\';".format(val)
+                    cursor.execute(sql_repeated)
+                    res = cursor.fetchone()
+            elif(item=='relativeparagraph'):
+                res = redis_db.hexists('tb_relative_paragraph:paragraph:' + val, 'paragraph')
+                if (not res):
+                    # 判断是否存在
+                    sql_repeated = "SELECT id,paragraph FROM `tb_relative_paragraph` WHERE `paragraph`=\'{}\';".format(val)
+                    cursor.execute(sql_repeated)
+                    res = cursor.fetchone()
+            elif(item=='title'):
+                res = redis_db.hexists('tb_article:title:' + val, 'title')
+                if (not res):
+                    # 判断是否存在
+                    sql_repeated = "SELECT id,title FROM `tb_article` WHERE `title`=\'{}\';".format(val)
+                    cursor.execute(sql_repeated)
+                    res = cursor.fetchone()
+        return res
