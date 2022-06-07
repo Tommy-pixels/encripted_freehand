@@ -24,7 +24,7 @@ class Task_Post_Article(Base_Task_Post):
                 content = cleaner_Article.clean_content(content=content)
             else:
                 continue
-            if (title and content and len(title) >= 10 and len(content) > 550):
+            if (title and content and len(title) >= 10 and len(content) > 550 and '；' not in title):
                 res_lis.append((article[0], article[1], title, content, article[4], article[5], article[6], article[7], article[8]))
         return res_lis
 

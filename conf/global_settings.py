@@ -91,11 +91,11 @@ API_PARAMS_DICT = {
         'content': ''
     },
     'question':{
-        "key": '',
-        "account": '',
-        "password": '',
+        'key': '',
         'question': '',
-        'answer': ''
+        'answer': '',
+        'name': '',
+        'stock': ''
     }
 }
 

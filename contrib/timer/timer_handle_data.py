@@ -1,6 +1,6 @@
 # coding=utf-8
 from freehand.core.timer.base import Base_Timer
-from freehand.core.utils.module_loading import import_string
+from freehand.core.utils.module_loading import import_string, import_module
 
 class TaskTimer_AutoDealwithPost(Base_Timer):
     def task(self):
@@ -34,6 +34,11 @@ class TaskTimer_AutoDealwithPost(Base_Timer):
             t_articles = article_p.Task_Post_Article()
             t_articles.env_config = self.timerConfig
             t_articles.run(table_name='tb_article', classification=datapool)
+        elif(self.timerConfig['task_type'] == 'questions'):
+            question_p = import_module(dotted_path + '.task_post_question')
+            t_articles = question_p.Task_Post_Question()
+            t_articles.env_config = self.timerConfig
+            t_articles.run(table_name='tb_question', classification=datapool)
         else:
             print('参数 task_type 出错')
 
