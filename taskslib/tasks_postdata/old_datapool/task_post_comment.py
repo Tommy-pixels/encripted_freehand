@@ -11,7 +11,7 @@ class Task_Post_Comment(Base_Task_Post):
     def __init__(self):
         self.keyword_list = ['个股', '股市', 'A股', '港股', '新股', '美股', '创业板', '证券股', '炒股', '散户', '短线', '操盘', '波段', '股票','個股', '創業板', '證券股', '散戶', '短線', '操盤']
 
-    def run(self, table_name, classification):
+    def run(self, table_name, classification, **kwargs):
         # 1 获取 对应数据
         db = DB_Singleton_DEFAULT()
         db.cursor.execute("SELECT id, account,password,api_uri FROM `tb_datapool_info` WHERE `classification`='{}';".format(classification))
