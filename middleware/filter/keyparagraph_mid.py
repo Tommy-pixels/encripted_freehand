@@ -6,7 +6,8 @@ from freehand.contrib.db.db_singleton_connector.db_connector_shujuchi import DB_
 class Filter_Keyparagraph(BaseFilter):
     def __init__(self):
         db = DB_Singleton_Shujuchi()
-        self.stocksNameCodeList = db.select_all_data('tb_stocks')
+        # self.stocksNameCodeList = db.select_all_data('tb_stocks') 这一句报错？？
+        self.stocksNameCodeList = db.getAllDataFromDB('SELECT name, code FROM `{}`;'.format('tb_stocks'))
         del db
 
     def integratedOp(self, paragraphList):
