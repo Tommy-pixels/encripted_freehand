@@ -7,7 +7,7 @@ from freehand.contrib.db.db_singleton_connector.db_connector_shujuchi import DB_
 
 
 class Task_Post_Keyparagraph(Base_Task_Post):
-    def run(self, table_name, classification):
+    def run(self, table_name, classification, **kwargs):
         db = DB_Singleton_Shujuchi()
         db.cursor.execute("SELECT id, account,password,api_uri FROM `tb_datapool_info` WHERE `classification`='{}';".format(classification))
         db_res = db.cursor.fetchone()
