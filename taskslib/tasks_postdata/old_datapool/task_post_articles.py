@@ -29,7 +29,7 @@ class Task_Post_Article(Base_Task_Post):
                 res_lis.append((article[0], article[1], title, content, article[4], article[5], article[6], article[7], article[8]))
         return res_lis
 
-    def run(self, table_name, classification):
+    def run(self, table_name, classification, **kwargs):
         """
             主要针对 段落、文章、评论 且保存在数据路里的这类数据（字符串类型）的处理和上传， 图片、视频等类型数据不适合本类方法
             注意：
