@@ -287,7 +287,7 @@ SQL_INSERT_ARTICLE = "INSERT INTO `tb_article` (`ori_url`, `title`, `content`, `
 SQL_INSERT_IMG = "INSERT INTO `tb_img` (`img_type`, `ori_uri`, `reco`, `crawl_time`, `local_path`, `site`, `classification`) VALUES ('{}', '{}', '{}', '{}', '{}', '{}', '{}');"
 SQL_INSERT_VIDEO = "INSERT INTO `tb_video` (`ori_uri`, `title`, `publish_time`, `crawl_time`, `local_path`, `site`, `duration`, `classification`, `posted`) VALUES ('{}', '{}', '{}', '{}', '{}', '{}', '{}', '{}', '{}');"
 
-SQL_SELECT_UNPOSTED = "SELECT {} FROM `{}` WHERE {};"
+SQL_SELECT_UNPOSTED = "SELECT {} FROM {} WHERE {};"
 DEFAULT_SQL_PARAM_UNPOSTED_FILTER_CONDITION = '(`posted`={}){}'
 DEFAULT_SQL_PARAM_UNPOSTED_KEYPARAGRAPH = '`id`, `ori_url`,  `paragraph`, `keyword`,`publish_time`, `crawl_time`, `site`, `classification`'
 DEFAULT_SQL_PARAM_UNPOSTED_RELATIVEPARAGRAPH = '`id`, `ori_url`, `paragraph`, `keyword`, `publish_time`, `crawl_time`, `site`, `classification`'
